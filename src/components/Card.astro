@@ -3,9 +3,11 @@ interface Props {
 	title: string;
 	body: string;
 	href: string;
+	image: string;
+	tags: string[];
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, image, tags } = Astro.props;
 ---
 
 <li class="link-card">
@@ -14,9 +16,22 @@ const { href, title, body } = Astro.props;
 			{title}
 			<span>&rarr;</span>
 		</h2>
+		<image alt={title+" Image"} src={image}></image>
 		<p>
 			{body}
 		</p>
+
+		<div class="flex flex-row">
+			{
+				tags.map((tag) => (
+					<div class="badge badge-primary my-4 mx-1">
+						{tag}
+					</div>
+				))
+			}
+		</div>
+		
+
 	</a>
 </li>
 <style>
